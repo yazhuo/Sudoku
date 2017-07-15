@@ -1,6 +1,6 @@
 #include <iostream>
-#include <ctime>
 #include "dfs.h"
+#include "grid.h"
 #include "sudoku.h"
 
 using std::cin;
@@ -8,21 +8,35 @@ using std::cout;
 using std::endl;
 
 
+
 int main(int argc, char* argv[])
 {
-	int blank;
-	cout << "please input the number of blanks : ";
-	cin >> blank;
+	//
+	//cout << "before solving..." << endl;
+	////dfs_Output();
+	//dancing_Output();
 
-	Construct(blank);
-	cout << "before solving..." << endl;
-	Output();
+	///*求解数独*/
+	///*1. 深度优先方法*/
+	////DFS(0);
+	///*2. 舞蹈链*/
+	////dancing_links();
 
-	/*求解数独*/
-	DFS(0);
+	//cout << "after solving..." << endl;
+	////dfs_Output();
+	//dancing_Output(); 
+	//
 
-	cout << "after solving..." << endl;
-	Output();
+	grid g;
+	if (g.search())
+	{
+		g.print();
+	}
+	else
+	{
+		cout << "wrong..." << endl;
+	}
+	
 
 	system("pause");
 	return 0;

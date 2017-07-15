@@ -68,4 +68,5 @@ int DFS(int n)
 			}
 		}
 	}
+	return 0;
 }
