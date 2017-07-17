@@ -1,5 +1,6 @@
 #include <iostream>
-#include <ctime>
+#include <Windows.h>
+#include <time.h>
 
 using std::cout;
 using std::endl;
@@ -12,6 +13,13 @@ void permuteMatrix();
 
 int main(int argc, char *argv[])
 {
+	LARGE_INTEGER t1, t2, tc;
+	QueryPerformanceFrequency(&tc);
+	QueryPerformanceCounter(&t1);
+
+	/*DWORD t1, t2;
+	t1 = GetTickCount();*/
+
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
@@ -30,16 +38,22 @@ int main(int argc, char *argv[])
 		matrix[temp / 3][temp % 3] = j;
 	}
 
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			cout << matrix[i][j] << " ";
-		}
-		cout << endl;
-	}
+	//for (int i = 0; i < 3; i++)
+	//{
+	//	for (int j = 0; j < 3; j++)
+	//	{
+	//		cout << matrix[i][j] << " ";
+	//	}
+	//	cout << endl;
+	//}
 
 	permuteMatrix();
+
+	QueryPerformanceCounter(&t2);
+	cout << "time = " << (t2.QuadPart - t1.QuadPart)*1.0 / tc.QuadPart << "us" << endl;
+
+	//t2 = GetTickCount();
+	//cout << "time = " << (t2 - t1)*1.0 / 1000 << endl;
 
 	for (int i = 0; i < 9; i++)
 	{

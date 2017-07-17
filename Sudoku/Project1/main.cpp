@@ -1,4 +1,5 @@
 #include <iostream>
+#include <Windows.h>
 #include "coord.h"
 #include "cell.h"
 
@@ -15,7 +16,11 @@ void preCoord(Coord & coCurrent);
 
 int main(int argc, char* argv[])
 {
+	DWORD begin, end;
+	begin = GetTickCount();
 	GenerateValidMatrix();
+	end = GetTickCount();
+	cout << "time = " << (end - begin) << "ms"<< endl;
 
 	//输出构造好的数独问题
 	for (int i = 0; i < SIZE; i++)
@@ -39,7 +44,7 @@ bool GenerateValidMatrix()
 	while (true)
 	{
 		Cell &c = cells[coCurrent.x][coCurrent.y];
-		cout << coCurrent.x << " " << coCurrent.y << endl;
+		//cout << coCurrent.x << " " << coCurrent.y << endl;
 		vector<int> al;
 		//当前格子未被处理过
 		if (!c.isProcessed)

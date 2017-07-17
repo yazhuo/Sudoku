@@ -1,38 +1,29 @@
-#include <iostream>
-#include <Windows.h>
-#include "dfs.h"
 #include "grid.h"
-#include "sudoku.h"
-
-using std::cin;
+#include <algorithm>
+#include <Windows.h>
+#include <iostream>
 using std::cout;
 using std::endl;
 
-
-int main(int argc, char* argv[])
+int main()
 {
-	
-	cout << "before solving..." << endl;
-	dfs_Output();
-
 	LARGE_INTEGER  large_interger;
 	double dff;
 	__int64  c1, c2;
 	QueryPerformanceFrequency(&large_interger);
 	dff = large_interger.QuadPart;
 	QueryPerformanceCounter(&large_interger);
-	c1 = large_interger.QuadPart;
-	
-	/*求解数独*/
-	/*深度优先方法*/
-	DFS(0);
 
+	c1 = large_interger.QuadPart;
+	grid g;         // Create new grid object and ask for solution
+	g.search();     // Find and print out solution
+	
 	QueryPerformanceCounter(&large_interger);
 	c2 = large_interger.QuadPart;
-	cout << "time = " << (c2-c1)*1000 / dff << "ms" << endl;
+	cout << "time = " << (c2 - c1) * 1000 / dff << "ms" << endl;
 
-	cout << "after solving..." << endl;
-	dfs_Output();
+	std::cout << std::endl << "Here is the solution :: " << std::endl << std::endl;
+	g.print();
 
 	system("pause");
 	return 0;
